@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Change Contents of an Element Notes</title>
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <h1>doodley</h1>
+        <div class="row">
+            <div>
+                <label for="first">First name</label>
+                <input type="text" id="first" name="first_name" placeholder="jane">
+            </div>
+            <div>
+                <label for="last">last_name</label>
+                <input type="text" id="last" name="last_name" placeholder="doe">
+            </div>
+            <button name="clear">domain expansion </button>
+            <p></p>
+        </div>
+    </div>
+</div>
+<script>
+    const firstname = document.getElementById('first');
+    const lastname = document.getElementById('last');
+    const full = document.querySelector('p');
+    const clearButton = document.querySelector(`[name="clear"]`);
+
+    firstname.addEventListener('change', function(e) {
+        let first = firstname.value;
+        let last = lastname.value;
+        let fullName = `${first} ${last}!`;
+        if(fullName.length>1){
+            full.classList.remove("hidden")
+        } else{
+            full.classList.add("hidden")
+        }
+        full.textContent = `Hello ${fullName}!`;
+    });
+
+    clearButton.addEventListener(`click`, function(e){
+        firstname.value= "";
+        lastname.value = "";
+        full.textContent = "";
+    });
+    firstname.addEventListener('change', nameCreator);
+    lastname.addEventListener('change', nameCreator);
+</script>
+<p class="hidden"></p>
+</body>
+</html>
